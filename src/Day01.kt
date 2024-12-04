@@ -10,7 +10,7 @@ fun main() {
         }
 
     fun part1(leftList: List<Int>, rightList: List<Int>): Int =
-        leftList.sorted().zip(rightList.sorted()).sumOf { abs(it.first - it.second) }
+        leftList.sorted().zip(rightList.sorted()).sumOf { (a, b) -> abs(a - b) }
 
     fun part2(leftList: List<Int>, rightList: List<Int>): Int {
         val rightMap = rightList.associateWith { id -> rightList.count { it == id } }
