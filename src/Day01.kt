@@ -9,19 +9,16 @@ fun main() {
             (leftList + nextLeft) to (rightList + nextRight)
         }
 
-    fun part1(input: List<String>): Int {
-        val (leftList, rightList) = parse(input)
-        return leftList.sorted().zip(rightList.sorted()).sumOf { abs(it.first - it.second) }
-    }
+    fun part1(leftList: List<Int>, rightList: List<Int>): Int =
+        leftList.sorted().zip(rightList.sorted()).sumOf { abs(it.first - it.second) }
 
-    fun part2(input: List<String>): Int {
-        val (leftList, rightList) = parse(input)
+    fun part2(leftList: List<Int>, rightList: List<Int>): Int {
         val rightMap = rightList.associateWith { id -> rightList.count { it == id } }
         return leftList.sumOf { it * rightMap.getOrDefault(it, 0) }
     }
 
-    val input = readInput("Day01")
-    part1(input).println()
-    part2(input).println()
+    val (leftList, rightList) = parse(readInput("Day01"))
+    part1(leftList, rightList).println()
+    part2(leftList, rightList).println()
 }
 
