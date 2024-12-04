@@ -4,7 +4,7 @@ fun main() {
 
     fun parse(input: List<String>): Pair<List<Int>, List<Int>> =
         input.map { line ->
-            line.split("   ").map { it.toInt() }.let { it[0] to it[1] }
+            line.split("   ").map { it.toInt() }.let { (l, r) -> l to r }
         }.fold(Pair(emptyList(), emptyList())) { (leftList, rightList), (nextLeft, nextRight) ->
             (leftList + nextLeft) to (rightList + nextRight)
         }
