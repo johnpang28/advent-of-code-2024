@@ -7,9 +7,11 @@ import Day03.parseLines
 object Day03 {
 
     sealed interface Op
-    data class Mul(val a: Int, val b: Int) : Op
     data object Do : Op
     data object Dont : Op
+    data class Mul(val a: Int, val b: Int) : Op {
+        val result = a * b
+    }
 
     private val pattern = """mul\(([0-9]{1,3}),([0-9]{1,3})\)|(do\(\))|(don't\(\))""".toRegex()
 
@@ -31,7 +33,7 @@ fun main() {
     fun part1(ops: List<Op>): Int =
         ops.fold(0) { acc, next ->
             when (next) {
-                is Mul -> acc + next.a * next.b
+                is Mul -> acc + next.result
                 else -> acc
             }
         }
@@ -42,7 +44,7 @@ fun main() {
             when (op) {
                 Do -> Do to x
                 Dont -> Dont to x
-                is Mul -> if (doOrDont == Do) doOrDont to x + op.a * op.b else doOrDont to x
+                is Mul -> if (doOrDont == Do) doOrDont to x + op.result else doOrDont to x
             }
         }
         return sum
