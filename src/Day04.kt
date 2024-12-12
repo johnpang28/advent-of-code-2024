@@ -36,15 +36,14 @@ object Day04 {
             yMax = input.size - 1
         )
 
-    fun WordSearch.countWord(word: String): Int {
-        return (0..yMax).flatMap { y ->
+    fun WordSearch.countWord(word: String): Int =
+        (0..yMax).flatMap { y ->
             (0..xMax).flatMap { x ->
                 Direction.entries.map { direction ->
                     match(word, Coord(x, y), direction)
                 }
             }
         }.count { it }
-    }
 
     fun WordSearch.countXmas(): Int =
         (1..<yMax).flatMap { y ->
@@ -61,13 +60,12 @@ object Day04 {
             }
         }.count { it }
 
-    private fun WordSearch.match(word: String, start: Coord, direction: Direction): Boolean {
-        return if (word.isEmpty()) true
+    private fun WordSearch.match(word: String, start: Coord, direction: Direction): Boolean =
+        if (word.isEmpty()) true
         else charMap[start]?.let { char ->
             if (char == word[0]) match(word.drop(1), start.move(direction), direction)
             else false
         } ?: false
-    }
 }
 
 fun main() {
