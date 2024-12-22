@@ -48,10 +48,7 @@ object Day09 {
     }
 
     private fun MutableList<Block>.swap(i1: Int, i2: Int) {
-        val b1 = this[i1]
-        val b2 = this[i2]
-        this[i1] = b2
-        this[i2] = b1
+        this[i1] = this[i2].also { this[i2] = this[i1] }
     }
 
     private fun List<Block>.fileIndexes(id: Int): List<Int> =
