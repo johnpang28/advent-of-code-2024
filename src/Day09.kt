@@ -14,7 +14,7 @@ object Day09 {
     fun parse(input: String): List<Block> =
         input.flatMapIndexed { i, c ->
             (0 until c.digitToInt()).map {
-                if (i % 2 == 0) Data((i / 2)) else FreeSpace
+                if (i % 2 == 0) Data(i / 2) else FreeSpace
             }
         }
 
